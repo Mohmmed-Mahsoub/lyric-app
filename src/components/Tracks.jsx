@@ -16,7 +16,7 @@ class Tracks extends Component {
                 <h3 className="text-center mb-4">top 10 tracks</h3>
                 <div className="row">
                   {context.track_list.map((data) => {
-                    console.log(data.track);
+                    //console.log(data.track);
                     return (
                       <Track key={data.track.track_id} trackData={data.track} />
                     );
