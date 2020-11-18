@@ -1,7 +1,8 @@
 import "./App.css";
+import { Route } from "react-router-dom";
 import Nav from "./components/nav";
-import Search from "./components/Search";
-import Tracks from "./components/Tracks";
+import Home from "./components/Home";
+import Lyric from "./components/Lyric";
 import ContextProvider from "./context";
 function App() {
   return (
@@ -9,8 +10,8 @@ function App() {
       <Nav />
       <div className="container">
         <ContextProvider>
-          <Search />
-          <Tracks />
+          <Route path="/track/lyric/:id" component={Lyric} />
+          <Route path="/" exact component={Home} />
         </ContextProvider>
       </div>
     </div>
