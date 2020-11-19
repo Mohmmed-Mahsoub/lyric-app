@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 class Search extends Component {
-  state = {};
+  state = {
+    trackTitle: "",
+  };
+  handleChange = (e) => {
+    //clone
+    let state = { ...this.state };
+    //edit
+    state[e.target.name] = e.target.value;
+    //set state
+    this.setState(state);
+  };
   render() {
     return (
       <div className="card card-body mb-4 p-4">
@@ -14,6 +24,9 @@ class Search extends Component {
               type="text"
               className="form-control form-control-lg"
               placeholder="Song title..."
+              name="trackTitle"
+              value={this.state.trackTitle}
+              onChange={this.handleChange}
             />
           </div>
           <button
