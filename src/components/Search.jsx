@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axiox from "axios";
 class Search extends Component {
   state = {
     trackTitle: "",
@@ -11,6 +12,13 @@ class Search extends Component {
     //set state
     this.setState(state);
   };
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await axiox.get(
+      `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track=${this.state.trackTitle}&page_size=10&page=1&s_track_rating=desc&apikey=${process.env.REACT_APP_API_KEY}`
+    );
+    console.log(res);
+  };
   render() {
     return (
       <div className="card card-body mb-4 p-4">
@@ -18,7 +26,7 @@ class Search extends Component {
           <i className="fas fa-music" /> Search For A Song
         </h1>
         <p className="lead text-center">Get the lyrics for any song</p>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <input
               type="text"
