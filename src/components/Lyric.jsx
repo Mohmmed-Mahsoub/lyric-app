@@ -47,13 +47,15 @@ class Lyric extends Component {
             <li className="list-group-item">
               <strong>Album ID</strong>: {trackData.album_id}
             </li>
-            <li className="list-group-item">
-              <strong>Song Genre</strong>:{" "}
-              {
-                trackData.primary_genres.music_genre_list[0].music_genre
-                  .music_genre_name
-              }
-            </li>
+            {trackData.primary_genres.music_genre_list[0] && (
+              <li className="list-group-item">
+                <strong>Song Genre</strong>:{" "}
+                {
+                  trackData.primary_genres.music_genre_list[0].music_genre
+                    .music_genre_name
+                }
+              </li>
+            )}
             <li className="list-group-item">
               <strong>Explicit Words</strong>:{" "}
               {trackData.explicit === 0 ? "No" : "Yes"}
