@@ -13,7 +13,7 @@ class Tracks extends Component {
           } else {
             return (
               <React.Fragment>
-                <h3 className="text-center mb-4">top 10 tracks</h3>
+                <h3 className="text-center mb-4">{context.serch_heading}</h3>
                 <div className="row">
                   {context.track_list.map((data) => {
                     //console.log(data.track);
