@@ -12,7 +12,7 @@ function App() {
         <ContextProvider>
           <Route path="/track/lyric/:id" component={Lyric} />
           <Route path="/" exact component={Home} />
-          <Redirect from="lyric-app" to="/" />
+          <Redirect from="/lyric-app" to="/" />
         </ContextProvider>
       </div>
     </div>
