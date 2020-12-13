@@ -14,14 +14,18 @@ class Search extends Component {
     this.setState(state);
   };
   handleSubmit = async (context, e) => {
-    const { dispatch } = context;
-    e.preventDefault();
-    const res = await axiox.get(
-      `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track=${this.state.trackTitle}&page_size=10&page=1&s_track_rating=desc&apikey=${process.env.REACT_APP_API_KEY}`
-    );
-    const newTrackList = res.data.message.body.track_list;
-    dispatch({ type: "SERCH_TRACKS_RES", payload: newTrackList });
-    this.setState({ trackTitle: " " });
+    try {
+      const { dispatch } = context;
+      e.preventDefault();
+      const res = await axiox.get(
+        `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.search?q_track=${this.state.trackTitle}&page_size=10&page=1&s_track_rating=desc&apikey=${process.env.REACT_APP_API_KEY}`
+      );
+      const newTrackList = res.data.message.body.track_list;
+      dispatch({ type: "SERCH_TRACKS_RES", payload: newTrackList });
+      this.setState({ trackTitle: " " });
+    } catch (err) {
+      window.alert(err);
+    }
   };
   render() {
     return (

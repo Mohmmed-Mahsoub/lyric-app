@@ -12,11 +12,15 @@ class ContextProvider extends Component {
     },
   };
   componentDidMount = async () => {
-    const res = await axiox.get(
-      `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/chart.tracks.get?page=1&page_size=10&country=us&f_has_lyrics=1&apikey=${process.env.REACT_APP_API_KEY}`
-    );
-    this.setState({ track_list: res.data.message.body.track_list });
-    //console.log(res.data.message.body.track_list);
+    try {
+      const res = await axiox.get(
+        `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/chart.tracks.get?page=1&page_size=10&country=us&f_has_lyrics=1&apikey=${process.env.REACT_APP_API_KEY}`
+      );
+      this.setState({ track_list: res.data.message.body.track_list });
+      //console.log(res.data.message.body.track_list);
+    } catch (err) {
+      window.alert(err);
+    }
   };
   reducer(state, action) {
     if (action.type === "SERCH_TRACKS_RES") {

@@ -10,14 +10,18 @@ class Lyric extends Component {
     trackData: {},
   };
   componentDidMount = async () => {
-    const resLyrics = await axiox.get(
-      `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${this.props.match.params.id}&apikey=${process.env.REACT_APP_API_KEY}`
-    );
-    this.setState({ lyricData: resLyrics.data.message.body.lyrics });
-    const resTrack = await axiox.get(
-      `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.get?track_id=${this.props.match.params.id}&apikey=${process.env.REACT_APP_API_KEY}`
-    );
-    this.setState({ trackData: resTrack.data.message.body.track });
+    try {
+      const resLyrics = await axiox.get(
+        `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${this.props.match.params.id}&apikey=${process.env.REACT_APP_API_KEY}`
+      );
+      this.setState({ lyricData: resLyrics.data.message.body.lyrics });
+      const resTrack = await axiox.get(
+        `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.get?track_id=${this.props.match.params.id}&apikey=${process.env.REACT_APP_API_KEY}`
+      );
+      this.setState({ trackData: resTrack.data.message.body.track });
+    } catch (err) {
+      window.alert(err);
+    }
   };
   render() {
     const { lyricData, trackData } = this.state;
