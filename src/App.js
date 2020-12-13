@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import Nav from "./components/nav";
 import Home from "./components/Home";
 import Lyric from "./components/Lyric";
@@ -12,6 +12,7 @@ function App() {
         <ContextProvider>
           <Route path="/track/lyric/:id" component={Lyric} />
           <Route path="/" exact component={Home} />
+          <Redirect from="lyric-app" to="/" />
         </ContextProvider>
       </div>
     </div>
